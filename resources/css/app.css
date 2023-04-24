@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table,
+th,
+td {
+    border: solid 1px gray;
+}
+
+.btn {
+    @apply font-bold py-2 px-4 m-1 rounded text-center opacity-90 text-opacity-100;
+}
+
+.btn-blue {
+    @apply btn bg-blue-500 hover:bg-blue-700 text-gray-100;
+}
+
+.btn-gray {
+    @apply btn bg-gray-200 hover:bg-gray-500 text-gray-900;
+}
+
+.btn-red {
+    @apply btn bg-red-500 hover:bg-red-700 text-gray-100;
+}
+
+.btn-green {
+    @apply btn bg-green-500 hover:bg-green-700 text-gray-100;
+}
+
+.btn-white {
+    @apply btn bg-white hover:bg-gray-400 text-gray-900 hover:text-gray-900 border border-solid border-gray-400;
+}
+
+.btn:hover {
+    @apply transition-all opacity-100 text-gray-50;
+}
+
+.detach-icon {
+    @apply w-6 h-6 text-red-800 hover:text-gray-100;
+}

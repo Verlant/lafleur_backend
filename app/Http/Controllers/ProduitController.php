@@ -42,6 +42,31 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->validate([
+            "prix-vente-produit" => "required|numeric|between:0.00,99999999.99",
+            "type-produit" => "required|int",
+            "categorie-produit" => "required|int",
+            "fleur-produit" => "required|array",
+            "quantite-fleur-produit" => "required|int"
+        ])) {
+            $prix_vente = $request->input('prix-vente-produit');
+            $type_produit_id = $request->input('type-produit');
+            $categorie_id = $request->input('categorie-produit');
+            $produit = new Produit();
+            $produit->prix_vente = $prix_vente;
+            $produit->type_produit_id = $type_produit_id;
+            $produit->categorie_id = $categorie_id;
+            $produit->save();
+            $quantite_fleur = $request->input("quantite-fleur-produit");
+            foreach ($request->input("fleur-produit") as $fleur_id) {
+                $produit->fleurs()->attach($fleur_id, [
+                    "quantite_fleur" => $quantite_fleur
+                ]);
+            }
+            return redirect()->route("produits.index");
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -82,11 +107,11 @@ class ProduitController extends Controller
         //
         if ($request->validate([
             "prix-vente-produit" => "required|numeric|between:0.00,99999999.99",
-            "nom-produit" => "required|int",
+            "type-produit" => "required|int",
             "categorie-produit" => "required|int",
         ])) {
             $prix_vente = $request->input('prix-vente-produit');
-            $type_produit_id = $request->input('nom-produit');
+            $type_produit_id = $request->input('type-produit');
             $categorie_id = $request->input('categorie-produit');
             $produit = Produit::find($id);
             $produit->prix_vente = $prix_vente;
@@ -96,7 +121,6 @@ class ProduitController extends Controller
             return redirect()->route("produits.show", $id);
         } else {
             return redirect()->back();
-            die;
         }
     }
 
@@ -106,6 +130,13 @@ class ProduitController extends Controller
     public function destroy(string $id)
     {
         //
+        $produit = Produit::find($id);
+        foreach ($produit->fleurs as $fleur) {
+            # code...
+            $produit->fleurs()->detach($fleur->id);
+        }
+        Produit::destroy($id);
+        return redirect()->route("produits.index");
     }
 
     /**
@@ -118,31 +149,28 @@ class ProduitController extends Controller
     {
         //TODO
         if ($request->validate([
-            "fleur-produit" => "required|int",
-            "quantite-fleur-produit" => "required|string|max:255|min:1"
+            "fleur-produit" => "required|array",
+            "quantite-fleur-produit" => "required|int"
         ])) {
-            $id_fleur = $request->input("fleur-produit");
             $quantite_fleur = $request->input("quantite-fleur-produit");
             $produit = Produit::find($id_produit);
-            if ($produit->fleurs->contains($id_fleur)) {
-                if ($produit->fleurs->find($id_fleur)->pivot->quantite_fleur != $quantite_fleur) {
-                    $produit->fleurs->find($id_fleur)->pivot->quantite_fleur = $quantite_fleur;
-                    $produit->fleurs->find($id_fleur)->pivot->save();
-                    return redirect()->route("produits.edit", $id_produit);
+            foreach ($request->input("fleur-produit") as $id_fleur) {
+                if ($produit->fleurs->contains($id_fleur)) {
+                    if ($produit->fleurs->find($id_fleur)->pivot->quantite_fleur != $quantite_fleur) {
+                        $produit->fleurs->find($id_fleur)->pivot->quantite_fleur = $quantite_fleur;
+                        $produit->fleurs->find($id_fleur)->pivot->save();
+                    }
                 } else {
-                    return redirect()->back();
+                    $produit->fleurs()->attach([
+                        $id_fleur => [
+                            "quantite_fleur" => $quantite_fleur
+                        ]
+                    ]);
                 }
-            } else {
-                $produit->fleurs()->attach([
-                    $id_fleur => [
-                        "quantite_fleur" => $quantite_fleur
-                    ]
-                ]);
-                return redirect()->route("produits.edit", $id_produit);
             }
+            return redirect()->route("produits.index");
         } else {
-            echo "erreur";
-            die;
+            return redirect()->route("produits.edit", $id_produit);
         }
     }
 

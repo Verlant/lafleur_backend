@@ -7,7 +7,7 @@
     <div class="px-1 sm:pl-8 sm:pt-4 pt-2 max-w-7xl mx-auto">
         <table class="mb-4">
             <thead>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Nom') }}</th>
+                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Type de produit') }}</th>
                 <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Prix de vente') }}</th>
                 <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Catégorie') }}</th>
                 <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Ajouté le') }}
@@ -42,6 +42,7 @@
                             {{ $produit->date_creation }}
                         </td>
                         <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
+                            {{ $produit->date_modif }}
                             @if (isset($produit->date_modif))
                                 {{ $produit->date_modif }}
                             @else
@@ -52,7 +53,10 @@
                             <div class="flex flex-col">
                                 @if (count($produit->fleurs))
                                     @foreach ($produit->fleurs as $fleur)
-                                        {{ ucfirst($fleur->nom_fleur) }}
+                                        <span>
+                                            {{ ucfirst($fleur->nom_fleur) }}
+                                            {{ $fleur->couleur->nom_couleur }}
+                                        </span>
                                     @endforeach
                                 @else
                                     Aucun

@@ -62,7 +62,6 @@ class FleurController extends Controller
             return redirect()->route("fleurs.index");
         } else {
             return redirect()->back();
-            die;
         }
     }
 
@@ -119,7 +118,6 @@ class FleurController extends Controller
             return redirect()->route("fleurs.index");
         } else {
             return redirect()->back();
-            die;
         }
     }
 
@@ -129,7 +127,6 @@ class FleurController extends Controller
     public function destroy(string $id)
     {
         //
-        // dd(Fleur::find($id)->produits()->detach());
         Fleur::destroy($id);
         return redirect()->route("fleurs.index");
     }

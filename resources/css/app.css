@@ -13,7 +13,7 @@ td {
 }
 
 .btn-blue {
-    @apply btn bg-blue-500 hover:bg-blue-700 text-gray-100;
+    @apply btn bg-blue-500 hover:bg-blue-700 text-white;
 }
 
 .btn-gray {
@@ -21,11 +21,11 @@ td {
 }
 
 .btn-red {
-    @apply btn bg-red-500 hover:bg-red-700 text-gray-100;
+    @apply btn bg-red-500 hover:bg-red-700 text-white;
 }
 
 .btn-green {
-    @apply btn bg-green-500 hover:bg-green-700 text-gray-100;
+    @apply btn bg-green-600 hover:bg-green-700 text-white;
 }
 
 .btn-white {
@@ -33,9 +33,9 @@ td {
 }
 
 .btn:hover {
-    @apply transition-all opacity-100 text-gray-50;
+    @apply transition-all opacity-100 text-white;
 }
 
 .detach-icon {
-    @apply w-6 h-6 text-red-800 hover:text-gray-100;
+    @apply w-6 h-6 text-red-800 hover:text-white;
 }

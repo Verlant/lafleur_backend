@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Ajouter une fleur') }}
+            {{ __('Ajouter un produit') }}
         </h1>
     </x-slot>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
-        <form action="{{ route('fleurs.store') }}" method="POST">
+        <form action="{{ route('produits.store') }}" method="POST">
             @method('POST')
             @csrf
             <div class="flex flex-col">
@@ -20,17 +20,17 @@
                 @enderror
                 <div class="flex gap-1 items-center my-4">
                     {{-- Select nom produit --}}
-                    <label for="nom-produit" class="text-gray-800 mb-1 font-bold self-center">
-                        {{ __('Nom') }} :
+                    <label for="type-produit" class="text-gray-800 mb-1 font-bold self-center">
+                        {{ __('Type de produit') }}
                     </label>
-                    <select name="nom-produit" id="nom-produit" class="rounded border-gray-400">
+                    <select name="type-produit" id="type-produit" class="rounded border-gray-400">
                         @foreach ($typeProduits as $typeProduit)
                             <option value="{{ $typeProduit->id }}">{{ $typeProduit->nom_type_produit }}</option>
                         @endforeach
                     </select>
                     {{-- Select catégorie --}}
                     <label for="categorie-produit" class="text-gray-800 ml-5 mb-1 font-bold self-center">
-                        {{ __('Catégorie') }} :
+                        {{ __('Catégorie') }}
                     </label>
                     <select name="categorie-produit" id="categorie-produit" class="rounded border-gray-400">
                         @foreach ($categories as $categorie)
@@ -41,9 +41,9 @@
                 <div class="flex gap-1 items-center my-4">
                     {{-- Select fleur --}}
                     <label for="fleur-produit" class="text-gray-800 mb-1 font-bold self-center">
-                        {{ __('Fleur') }} :
+                        {{ __('Fleur') }}
                     </label>
-                    <select name="fleur-produit" id="fleur-produit" class="rounded border-gray-400">
+                    <select name="fleur-produit[]" id="fleur-produit" multiple class="rounded border-gray-400 select2">
                         @foreach ($fleurs as $fleur)
                             <option value="{{ $fleur->id }}">{{ $fleur->nom_fleur }}
                                 {{ $fleur->couleur->nom_couleur }}

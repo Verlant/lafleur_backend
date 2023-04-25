@@ -6,10 +6,10 @@
     </x-slot>
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <h2 class="p-5 text-gray-800 font-bold text-3xl text-center sm:text-left first-letter:capitalize">
-            {{ __('Nom') }} : {{ $client->nom_personne }} {{ $client->prenom_personne }}
+            {{ __('Nom') }} {{ $client->nom_personne }} {{ $client->prenom_personne }}
         </h2>
         <h3 class="p-5 text-gray-800 font-bold text-3xl text-center sm:text-left first-letter:capitalize">
-            {{ __('Wording') }} : {{ $categorie->libelle }}
+            {{ __('Wording') }} {{ $categorie->libelle }}
         </h3>
 
         <p class="px-5  text-gray-600">

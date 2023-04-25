@@ -97,7 +97,7 @@ class ClientController extends Controller
             $client = Client::find($id_client);
             if ($client->adresses->contains($id_adresse)) {
                 // echo "Ce adresse est déjà attaché à ce client.";
-                // die;
+                // 
                 return redirect()->back();
             } else {
                 $client->adresses()->attach($id_adresse);
@@ -105,7 +105,6 @@ class ClientController extends Controller
             }
         } else {
             echo "erreur";
-            die;
         }
     }
 

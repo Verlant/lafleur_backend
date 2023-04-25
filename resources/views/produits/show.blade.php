@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Détail du produit') }} {{ ucfirst($produit->nom_produit) }}
+            {{ __('Détail du produit') }} {{ ucfirst($produit->type_produit) }}
         </h1>
     </x-slot>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">

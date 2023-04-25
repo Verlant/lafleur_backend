@@ -31,7 +31,7 @@
                     <label for="couleur-fleur" class="text-gray-800 mb-1 font-bold self-center">
                         {{ __('Couleur') }}
                     </label>
-                    <select name="couleur-fleur" id="couleur-fleur" class="rounded border-gray-400">
+                    <select name="couleur-fleur" id="couleur-fleur" class="rounded border-gray-400 select2">
                         @foreach ($couleurs as $couleur)
                             <option value="{{ $couleur->id }}">{{ $couleur->nom_couleur }}</option>
                         @endforeach
@@ -40,7 +40,7 @@
                     <label for="unite-fleur" class="text-gray-800 ml-5 mb-1 font-bold self-center">
                         {{ __('Unite') }}
                     </label>
-                    <select name="unite-fleur" id="unite-fleur" class="rounded border-gray-400">
+                    <select name="unite-fleur" id="unite-fleur" class="rounded border-gray-400 select2">
                         @foreach ($unites as $unite)
                             <option value="{{ $unite->id }}">{{ $unite->nom_unite }}</option>
                         @endforeach

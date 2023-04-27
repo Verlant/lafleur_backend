@@ -18,7 +18,13 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
+            "nom_client" => ucwords($this->faker->words(1, true)),
+            "prenom_client" => ucwords($this->faker->words(1, true)),
+            "email" => $this->faker->unique()->safeEmail(),
             "mdp" => Hash::make($this->faker->password()),
+            "tel" => $this->faker->numerify('06########'),
+            "date_creation" => $this->faker->dateTime(),
+            "adresse_id" => $this->faker->unique()->numberBetween(1, 10),
         ];
     }
 }

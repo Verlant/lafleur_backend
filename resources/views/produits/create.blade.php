@@ -18,16 +18,15 @@
                 @error('prix-vente-produit')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
+                {{-- Input nom produit --}}
+                <label for="nom-produit" class="text-gray-800 mb-1 font-bold text-center md:text-left">
+                    {{ __('Nom du produit') }}
+                </label>
+                <input type="text" name="nom-produit" id="nom-produit" class="rounded border-gray-400 mb-1">
+                @error('nom-produit')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
                 <div class="flex flex-col gap-1 items-center mt-4 md:flex-row">
-                    {{-- Select nom produit --}}
-                    <label for="type-produit" class="text-gray-800 mb-1 font-bold self-center">
-                        {{ __('Type de produit') }}
-                    </label>
-                    <select name="type-produit" id="type-produit" class="rounded border-gray-400">
-                        @foreach ($typeProduits as $typeProduit)
-                            <option value="{{ $typeProduit->id }}">{{ $typeProduit->nom_type_produit }}</option>
-                        @endforeach
-                    </select>
                     {{-- Select catégorie --}}
                     <label for="categorie-produit" class="text-gray-800 ml-5 mb-1 font-bold self-center">
                         {{ __('Catégorie') }}

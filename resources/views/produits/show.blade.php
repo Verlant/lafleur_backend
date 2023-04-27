@@ -1,17 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Détail du produit') }} {{ ucfirst($produit->type_produit) }}
+            {{ __('Détail du produit') }} {{ ucfirst($produit->nom_produit) }}
         </h1>
     </x-slot>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
         <div class="flex flex-wrap justify-center sm:justify-normal">
-            <h2 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">
-                {{ __('Nom') }}
-                <br />
-                <span
-                    class="text-gray-800 font-normal text-xl text-center">{{ ucfirst($produit->typeProduit->nom_type_produit) }}</span>
-            </h2>
             <h2 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">
                 {{ __('Catégorie') }}
                 <br />

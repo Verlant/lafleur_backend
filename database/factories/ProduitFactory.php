@@ -17,11 +17,10 @@ class ProduitFactory extends Factory
     public function definition(): array
     {
         return [
-            "prix_vente" => $this->faker->randomFloat(2, 1, 999.99),
             "nom_produit" => ucwords($this->faker->words(1, true)),
+            "prix_vente" => $this->faker->randomFloat(2, 1, 999.99),
             "date_creation" => $this->faker->dateTime(),
             "categorie_id" => $this->faker->numberBetween(1, 5),
-            "type_produit_id" => $this->faker->numberBetween(1, 3),
         ];
     }
 }

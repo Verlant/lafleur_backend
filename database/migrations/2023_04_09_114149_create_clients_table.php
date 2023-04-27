@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personnes', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_personne', 190);
-            $table->string('prenom_personne', 190);
+            $table->string('nom_client', 190);
+            $table->string('prenom_client', 50);
             $table->string('email', 190)->unique();
-            $table->char('tel', 10)->nullable();
+            $table->string('mdp', 80);
+            $table->char('tel', 10);
             $table->timestamp('date_creation');
             $table->timestamp('date_modif')->nullable();
+            $table->unsignedBigInteger('adresse_id');
+            $table->foreign('adresse_id')->references('id')->on('adresses');
+            // $table->timestamps();
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personnes');
+        Schema::dropIfExists('clients');
     }
 };

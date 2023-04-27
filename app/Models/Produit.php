@@ -13,23 +13,17 @@ class Produit extends Model
     protected $table = "produits";
     protected $primaryKey = "id";
     protected $fillable = [
-        "prix_vente",
         "nom_produit",
+        "prix_vente",
         "date_creation",
         "date_modif",
-        "categorie_id",
-        "type_produit_id"
+        "categorie_id"
     ];
     public $timestamps = false;
 
     public function categorie()
     {
         return $this->belongsTo(Categorie::class);
-    }
-
-    public function nomProduit()
-    {
-        return $this->belongsTo(NomProduit::class);
     }
 
     public function fleurs()

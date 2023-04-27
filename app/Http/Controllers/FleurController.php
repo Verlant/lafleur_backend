@@ -44,7 +44,7 @@ class FleurController extends Controller
     {
         //
         if ($request->validate([
-            "nom-fleur" => "required|string|max:45",
+            "nom-fleur" => "required|string|min:3|max:190",
             "quantite-stock-fleur" => "required|int",
             "couleur-fleur" => "required|int",
             "unite-fleur" => "required|int",

@@ -4,48 +4,39 @@
             {{ __('Toutes les commandes') }}
         </h1>
     </x-slot>
-    <div class="px-1 sm:pl-8 sm:pt-4 pt-2 max-w-7xl mx-auto">
-        <table class="mb-4">
+    <div class="px-1 sm:pl-8 sm:pt-4 pt-2">
+        <table class="mb-4 mx-auto">
             <thead>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Type commmande') }}</th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Date commande') }}
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center sm:table-cell hidden">
+                    {{ __('Date commande') }}
                     <br />
                     (Année-Mois-Jour Heure)
                 </th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Date livraison') }}
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Date livraison') }}
                     <br />
                     (Année-Mois-Jour Heure)
                 </th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Suivi paiement') }}</th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Suivi livraison') }}</th>
-                {{-- <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Modifié le') }}
-                    <br />
-                    (Année-Mois-Jour Heure)
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Suivi paiement') }}</th>
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Suivi livraison') }}</th>
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center sm:table-cell hidden">
+                    {{ __('Prix total') }}
                 </th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">
-                    {{ __('Composé des fleurs') }}
-                </th> --}}
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 max-w-xs">
-                    <div class="flex justify-between items-center pl-4">
-                        {{ __('ACTIONS') }}<x-buttons.create :href="route('commandes.create')"></x-buttons.create>
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 max-w-xs">
+                    <div class="text-center">
+                        {{ __('ACTIONS') }}
                     </div>
                 </th>
             </thead>
             <tbody>
                 @foreach ($commandes as $commande)
                     <tr>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            @dump($commande)
-                            @if ($commande)
-                            @else
-                            @endif
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center sm:table-cell hidden">
+                            {{ $commande->date_commande }}
                         </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            {{ $commande->date_commande }}</td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
                             {{ $commande->date_livraison }}
                         </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
                             @if ($commande->etat_paiement == 'A')
                                 <x-buttons.validated></x-buttons.validated>
                             @elseif ($commande->etat_paiement == 'W')
@@ -54,7 +45,7 @@
                                 <x-buttons.cancelled></x-buttons.cancelled>
                             @endif
                         </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
                             @if ($commande->etat_livraison == 'A')
                                 <x-buttons.validated></x-buttons.validated>
                             @elseif ($commande->etat_livraison == 'W')
@@ -63,32 +54,21 @@
                                 <x-buttons.cancelled></x-buttons.cancelled>
                             @endif
                         </td>
-                        {{-- <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            {{ $commande->date_modif }}
-                            @if (isset($commande->date_modif))
-                                {{ $commande->date_modif }}
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center sm:table-cell hidden">
+                            @php($prixTotal = 0)
+                            @if ($commande->frais_livraison)
+                                @foreach ($commande->produits as $produit)
+                                    @php($prixTotal += $produit->prix_vente * $produit->pivot->quantite_vente + 2.99)
+                                @endforeach
                             @else
-                                Jamais
+                                @php($prixTotal += $produit->prix_vente * $produit->pivot->quantite_vente)
                             @endif
+                            {{ $prixTotal }}
                         </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            <div class="flex flex-col">
-                                @if (count($commande->fleurs))
-                                    @foreach ($commande->fleurs as $fleur)
-                                        <span>
-                                            {{ $fleur->nom_fleur }}
-                                            {{ $fleur->couleur->nom_couleur }}
-                                        </span>
-                                    @endforeach
-                                @else
-                                    Aucun
-                                @endif
-                            </div>
-                        </td> --}}
                         <td class="sm:p-3 text-sm font-medium max-w-xs">
                             <div class="flex flex-col sm:flex-row justify-between">
+                                <x-buttons.edit :href="route('commandes.edit', $commande->id)"></x-buttons.edit>
                                 <x-buttons.show :href="route('commandes.show', $commande->id)"></x-buttons.show>
-                                <x-buttons.destroy :action="route('commandes.destroy', $commande->id)"></x-buttons.destroy>
                             </div>
                         </td>
                     </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Fleur;
 use App\Models\FleurProduit;
+use App\Models\NomProduit;
 use App\Models\Produit;
 use App\Models\TypeProduit;
 use Illuminate\Database\DBAL\TimestampType;
@@ -31,7 +32,6 @@ class ProduitController extends Controller
     {
         //
         return view('produits.create', [
-            "typeProduits" => TypeProduit::all(),
             "categories" => Categorie::all(),
             "fleurs" => Fleur::all()
         ]);
@@ -45,17 +45,17 @@ class ProduitController extends Controller
         //
         if ($request->validate([
             "prix-vente-produit" => "required|numeric|between:0.00,99999999.99",
-            "type-produit" => "required|int",
+            "nom-produit" => "required|string|min:3|max:190",
             "categorie-produit" => "required|int",
             "fleur-produit" => "required|array",
             "quantite-fleur-produit" => "required|int"
         ])) {
             $prix_vente = $request->input('prix-vente-produit');
-            $type_produit_id = $request->input('type-produit');
+            $nom_produit = $request->input('nom-produit');
             $categorie_id = $request->input('categorie-produit');
             $produit = new Produit();
             $produit->prix_vente = $prix_vente;
-            $produit->type_produit_id = $type_produit_id;
+            $produit->nom_produit = $nom_produit;
             $produit->categorie_id = $categorie_id;
             $produit->save();
             $quantite_fleur = $request->input("quantite-fleur-produit");
@@ -89,12 +89,10 @@ class ProduitController extends Controller
     {
         //
         $produit = Produit::find($id);
-        $typeProduits = TypeProduit::all();
         $categories = Categorie::all();
         $fleurs = Fleur::all();
         return view('produits.edit', [
             'produit' => $produit,
-            'typeProduits' => $typeProduits,
             'categories' => $categories,
             'fleurs' => $fleurs
         ]);
@@ -108,15 +106,15 @@ class ProduitController extends Controller
         //
         if ($request->validate([
             "prix-vente-produit" => "required|numeric|between:0.00,99999999.99",
-            "type-produit" => "required|int",
+            "nom-produit" => "required|string|min:3|max:190",
             "categorie-produit" => "required|int",
         ])) {
             $prix_vente = $request->input('prix-vente-produit');
-            $type_produit_id = $request->input('type-produit');
+            $nom_produit = $request->input('nom-produit');
             $categorie_id = $request->input('categorie-produit');
             $produit = Produit::find($id);
             $produit->prix_vente = $prix_vente;
-            $produit->type_produit_id = $type_produit_id;
+            $produit->nom_produit = $nom_produit;
             $produit->categorie_id = $categorie_id;
             $produit->date_modif = now();
             $produit->save();

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier le produit') }} {{ $produit->typeProduit->nom_type_produit }}
+            {{ __('Modifier le produit') }} {{ $produit->nom_produit }}
         </h1>
     </x-slot>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
@@ -18,18 +18,16 @@
                 @error('prix-vente-produit')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
+                {{-- Input nom produit --}}
+                <label for="nom-produit" class="text-gray-800 mb-1 font-bold text-center md:text-left">
+                    {{ __('Nom du produit') }}
+                </label>
+                <input type="text" name="nom-produit" id="nom-produit" value="{{ $produit->nom_produit }}"
+                    class="rounded border-gray-400 mb-1">
+                @error('nom-produit')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
                 <div class="flex flex-col gap-1 items-center mt-4 md:flex-row">
-                    {{-- Select nom produit --}}
-                    <label for="type-produit" class="text-gray-800 mb-1 font-bold self-center">
-                        {{ __('Type de produit') }}
-                    </label>
-                    <select name="type-produit" id="type-produit" class="rounded border-gray-400 select2">
-                        <option value="{{ $produit->type_produit_id }}">
-                            {{ $produit->typeProduit->nom_type_produit }}</option>
-                        @foreach ($typeProduits as $typeProduit)
-                            <option value="{{ $typeProduit->id }}">{{ $typeProduit->nom_type_produit }}</option>
-                        @endforeach
-                    </select>
                     {{-- Select catégorie --}}
                     <label for="categorie-produit" class="text-gray-800 ml-5 mb-1 font-bold self-center">
                         {{ __('Catégorie') }}

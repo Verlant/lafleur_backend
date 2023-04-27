@@ -18,9 +18,7 @@ return new class extends Migration
             $table->timestamp("date_creation");
             $table->timestamp("date_modif")->nullable();
             $table->unsignedBigInteger("categorie_id");
-            $table->unsignedBigInteger("type_produit_id");
             $table->foreign("categorie_id")->references("id")->on("categories");
-            $table->foreign("nom_produit_id")->references("id")->on("noms_produits");
         });
     }
 

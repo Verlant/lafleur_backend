@@ -21,6 +21,9 @@ class CommandeFactory extends Factory
             "date_livraison" => $this->faker->dateTime(),
             "etat_paiement" => $this->faker->randomElement(['A', 'W', 'B']),
             "etat_livraison" => $this->faker->randomElement(['A', 'W', 'B']),
+            "frais_livraison" => $this->faker->boolean(),
+            "client_id" => $this->faker->numberBetween(1, 10),
+            "loterie_id" => $this->faker->numberBetween(1, 5),
         ];
     }
 }

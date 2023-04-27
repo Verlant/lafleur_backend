@@ -15,10 +15,7 @@ class ClientController extends Controller
     public function index()
     {
         //
-        $clients = [];
-        foreach (Client::all() as $client) {
-            $clients[] = Personne::find($client->personne_id);
-        }
+        $clients = Client::all();
         return view('clients.index', [
             'clients' => $clients
         ]);

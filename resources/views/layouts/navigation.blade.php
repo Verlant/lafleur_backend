@@ -21,11 +21,8 @@
                     <x-nav-link :href="route('produits.index')" :active="request()->routeIs('produits.index')">
                         {{ __('Produits') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('commandesClients.index')" :active="request()->routeIs('commandesClients.index')">
-                        {{ __('Commandes clients') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('commandesFournisseurs.index')" :active="request()->routeIs('commandesFournisseurs.index')">
-                        {{ __('Commandes fournisseurs') }}
+                    <x-nav-link :href="route('commandes.index')" :active="request()->routeIs('commandes.index')">
+                        {{ __('Commandes') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -96,11 +93,8 @@
             <x-responsive-nav-link :href="route('produits.index')" :active="request()->routeIs('produits.index')">
                 {{ __('Produits') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('commandesClients.index')" :active="request()->routeIs('commandesClients.index')">
-                {{ __('Commandes clients') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('commandesFournisseurs.index')" :active="request()->routeIs('commandesFournisseurs.index')">
-                {{ __('Commandes fournisseurs') }}
+            <x-responsive-nav-link :href="route('commandes.index')" :active="request()->routeIs('commandes.index')">
+                {{ __('Commandes') }}
             </x-responsive-nav-link>
         </div>
 

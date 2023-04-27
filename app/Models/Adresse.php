@@ -35,8 +35,8 @@ class Adresse extends Model
         return $this->belongsToMany(Client::class); // belongsToMany = many to many
     }
 
-    public function commandes()
+    public function commandesClients()
     {
-        return $this->hasMany(Commande::class);
+        return $this->hasMany(CommandeClient::class);
     }
 }

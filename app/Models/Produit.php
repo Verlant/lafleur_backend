@@ -14,6 +14,7 @@ class Produit extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         "prix_vente",
+        "nom_produit",
         "date_creation",
         "date_modif",
         "categorie_id",

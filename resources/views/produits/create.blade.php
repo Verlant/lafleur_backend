@@ -10,7 +10,7 @@
             @csrf
             <div class="flex flex-col">
                 {{-- Input prix de vente --}}
-                <label for="prix-vente-produit" class="text-gray-800 mb-1 font-bold">
+                <label for="prix-vente-produit" class="text-gray-800 mb-1 font-bold text-center md:text-left">
                     {{ __('Prix de vente') }}
                 </label>
                 <input type="text" name="prix-vente-produit" id="prix-vente-produit"
@@ -18,7 +18,7 @@
                 @error('prix-vente-produit')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
-                <div class="flex gap-1 items-center my-4">
+                <div class="flex flex-col gap-1 items-center mt-4 md:flex-row">
                     {{-- Select nom produit --}}
                     <label for="type-produit" class="text-gray-800 mb-1 font-bold self-center">
                         {{ __('Type de produit') }}
@@ -38,7 +38,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="flex gap-1 items-center my-4">
+                <div class="flex flex-col gap-1 items-center mt-4 md:flex-row">
                     {{-- Select fleur --}}
                     <label for="fleur-produit" class="text-gray-800 mb-1 font-bold self-center">
                         {{ __('Fleur') }}
@@ -50,17 +50,17 @@
                             </option>
                         @endforeach
                     </select>
-                    {{-- Input quantite de fleur --}}
-                    <label for="quantite-fleur-produit" class="text-gray-800 ml-4 mb-1 font-bold">
+                    {{-- Input quantite fleur --}}
+                    <label for="quantite-fleur-produit" class="text-gray-800 ml-1 mb-1 font-bold">
                         {{ __('Quantité de fleurs') }}
                     </label>
                     <input type="text" name="quantite-fleur-produit" id="quantite-fleur-produit"
-                        class="rounded border-gray-400 mb-1 mr-4">
+                        class="rounded border-gray-400 mb-1">
                     @error('quantite-fleur-produit')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="flex flex-wrap justify-center sm:justify-end">
+                <div class="mt-4 max-w-fit md:max-w-none flex flex-col justify-end md:flex-row mx-auto md:mx-0">
                     <x-buttons.submit></x-buttons.submit>
                     <x-buttons.reset></x-buttons.reset>
                     <x-buttons.back :href="route('fleurs.index')"></x-buttons.back>

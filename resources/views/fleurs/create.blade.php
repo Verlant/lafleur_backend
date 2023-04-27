@@ -10,7 +10,7 @@
             @csrf
             <div class="flex flex-col">
                 {{-- Input nom fleur --}}
-                <label for="nom-fleur" class="text-gray-800 mb-1 font-bold">
+                <label for="nom-fleur" class="text-gray-800 mb-1 font-bold text-center sm:text-left">
                     {{ __('Nom') }}
                 </label>
                 <input type="text" name="nom-fleur" id="nom-fleur" class="rounded border-gray-400 mb-1">
@@ -18,7 +18,7 @@
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 {{-- Input quantite stock --}}
-                <label for="quantite-stock-fleur" class="text-gray-800 mb-1 font-bold">
+                <label for="nom-fleur" class="text-gray-800 mb-1 font-bold text-center sm:text-left">
                     {{ __('Quantité en stock') }}
                 </label>
                 <input type="text" name="quantite-stock-fleur" id="quantite-stock-fleur"
@@ -27,7 +27,7 @@
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 {{-- Select couleur --}}
-                <div class="flex gap-1 items-center my-4">
+                <div class="flex flex-col gap-1 items-center mt-4 sm:flex-row">
                     <label for="couleur-fleur" class="text-gray-800 mb-1 font-bold self-center">
                         {{ __('Couleur') }}
                     </label>
@@ -46,7 +46,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="flex flex-wrap justify-center sm:justify-end">
+                <div class="mt-4 max-w-fit sm:max-w-none mx-auto flex flex-col justify-end sm:flex-row sm:mx-0">
                     <x-buttons.submit></x-buttons.submit>
                     <x-buttons.reset></x-buttons.reset>
                     <x-buttons.back :href="route('fleurs.index')"></x-buttons.back>

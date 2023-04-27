@@ -16,7 +16,7 @@ class CommandeClientController extends Controller
      */
     public function index()
     {
-        //
+
         $commandesClients = DB::table('commandes')
             ->join('commande_client', 'commandes.id', 'commande_client.commande_id')
             ->join('clients', 'commande_client.client_personne_id', 'clients.personne_id')
@@ -27,25 +27,31 @@ class CommandeClientController extends Controller
             ->join('adresses', 'commande_client.adresse_livraison_id', 'adresses.id')
             ->join('villes', 'adresses.ville_id', 'villes.id')
             ->join('codes_postaux', 'adresses.code_postal_id', 'villes.id')
-            ->select(
-                'commande_client.commande_id',
-                'date_commande',
-                'date_livraison',
-                'etat_paiement',
-                'etat_livraison',
-                'frais_livraison',
-                'nom_personne',
-                'prenom_personne',
-                'nom_lot',
-                'prix_vente',
-                'rue',
-                'nom_destinataire',
-                'cp',
-                'nom_ville'
-            )
+            // ->select(
+            //     'commande_client.commande_id',
+            //     'commande_client_produit.quantite_vente',
+            //     'date_commande',
+            //     'date_livraison',
+            //     'etat_paiement',
+            //     'etat_livraison',
+            //     'frais_livraison',
+            //     'nom_personne',
+            //     'prenom_personne',
+            //     'nom_lot',
+            //     'prix_vente',
+            //     'rue',
+            //     'nom_destinataire',
+            //     'cp',
+            //     'nom_ville'
+            // )
             ->get();
+        $commandes = Commande::all();
+        // $commandesClients = CommandeClient::all();
+        // dump($commandes[0]);
+        // dd($commandesClients[0]->commande);
         return view('commandesClients.index', [
             'commandesClients' => $commandesClients,
+            'commandes' => $commandes
         ]);
     }
 

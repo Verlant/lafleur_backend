@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('adresses', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_destinataire', 100)->nullable();
-            $table->string('rue', 255);
+            $table->string('nom_destinataire', 190)->nullable();
+            $table->string('rue', 190);
             $table->timestamp('date_creation');
             $table->timestamp('date_modif')->nullable();
             $table->unsignedBigInteger('ville_id');

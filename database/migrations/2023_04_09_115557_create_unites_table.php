@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('unites', function (Blueprint $table) {
             $table->id();
-            $table->string("nom_unite", 45);
+            $table->string("nom_unite", 190);
         });
     }
 

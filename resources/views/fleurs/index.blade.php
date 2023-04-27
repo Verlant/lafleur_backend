@@ -4,18 +4,16 @@
             {{ __('Toutes les fleurs') }}
         </h1>
     </x-slot>
-    <div class="px-1 sm:pl-8 sm:pt-4 pt-2 max-w-7xl mx-auto">
-        <table class="mb-4">
+    <div class="px-1 sm:pl-8 sm:pt-4 pt-2">
+        <table class="mb-4 mx-auto">
             <thead>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Nom') }}</th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Quantite') }}</th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Dernier inventaire') }}
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Nom') }}</th>
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Quantite') }}</th>
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Dernier inventaire') }}
                     <br /> (Année-Mois-Jour Heure)
                 </th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Couleur') }}</th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 text-center">{{ __('Unité') }}</th>
-                <th class="sm:p-2 text-sm font-semibold text-gray-600 max-w-xs">
-                    <div class="flex justify-between items-center pl-16">
+                <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 max-w-xs">
+                    <div class="flex flex-col justify-between items-center sm:flex-row sm:pl-16">
                         {{ __('ACTIONS') }}<x-buttons.create :href="route('fleurs.create')"></x-buttons.create>
                     </div>
                 </th>
@@ -23,21 +21,15 @@
             <tbody>
                 @foreach ($fleurs as $fleur)
                     <tr>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            {{ ucfirst($fleur->nom_fleur) }}</td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">{{ $fleur->quantite_stock }}
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
+                            {{ ucfirst($fleur->nom_fleur) }} {{ $fleur->couleur->nom_couleur }}</td>
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">{{ $fleur->quantite_stock }}
                         </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
+                        <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
                             {{ $fleur->date_inventaire }}
                         </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            {{ ucfirst($fleur->couleur->nom_couleur) }}
-                        </td>
-                        <td class="sm:p-2 text-sm font-medium text-gray-800 text-center">
-                            {{ ucfirst($fleur->unite->nom_unite) }}
-                        </td>
                         <td class="sm:p-3 text-sm font-medium max-w-xs">
-                            <div class="flex flex-col sm:flex-row justify-between">
+                            <div class="flex flex-col sm:flex-row sm:justify-between w-max sm:w-auto">
                                 <x-buttons.edit :href="route('fleurs.edit', $fleur->id)"></x-buttons.edit>
                                 <x-buttons.show :href="route('fleurs.show', $fleur->id)"></x-buttons.show>
                                 <x-buttons.destroy :action="route('fleurs.destroy', $fleur->id)"></x-buttons.destroy>

@@ -90,6 +90,18 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Tableau de bord') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('fleurs.index')" :active="request()->routeIs('fleurs.index')">
+                {{ __('Fleurs') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('produits.index')" :active="request()->routeIs('produits.index')">
+                {{ __('Produits') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('commandesClients.index')" :active="request()->routeIs('commandesClients.index')">
+                {{ __('Commandes clients') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('commandesFournisseurs.index')" :active="request()->routeIs('commandesFournisseurs.index')">
+                {{ __('Commandes fournisseurs') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

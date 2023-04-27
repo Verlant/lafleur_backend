@@ -7,6 +7,7 @@ use App\Models\Fleur;
 use App\Models\FleurProduit;
 use App\Models\Produit;
 use App\Models\TypeProduit;
+use Illuminate\Database\DBAL\TimestampType;
 use Illuminate\Http\Request;
 
 class ProduitController extends Controller
@@ -117,6 +118,7 @@ class ProduitController extends Controller
             $produit->prix_vente = $prix_vente;
             $produit->type_produit_id = $type_produit_id;
             $produit->categorie_id = $categorie_id;
+            $produit->date_modif = now();
             $produit->save();
             return redirect()->route("produits.show", $id);
         } else {
@@ -168,6 +170,8 @@ class ProduitController extends Controller
                     ]);
                 }
             }
+            $produit->date_modif = now();
+            $produit->save();
             return redirect()->route("produits.index");
         } else {
             return redirect()->route("produits.edit", $id_produit);

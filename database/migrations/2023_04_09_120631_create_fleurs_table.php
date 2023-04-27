@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('fleurs', function (Blueprint $table) {
             $table->id();
-            $table->string("nom_fleur", 45);
+            $table->string("nom_fleur", 190);
             $table->integer("quantite_stock");
             $table->timestamp("date_inventaire");
             $table->unsignedBigInteger("unite_id");

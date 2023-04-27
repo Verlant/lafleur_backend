@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('loteries', function (Blueprint $table) {
             $table->id();
-            $table->string("nom_lot", 45);
+            $table->string("nom_lot", 190);
             $table->integer("quantite_lot");
         });
     }

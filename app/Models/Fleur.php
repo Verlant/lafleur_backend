@@ -31,9 +31,4 @@ class Fleur extends Model
     {
         return $this->belongsToMany(Produit::class)->withPivot('quantite_fleur'); // belongsToMany = many to many
     }
-
-    public function commandeFournisseurs()
-    {
-        return $this->belongsToMany(CommandeFournisseur::class, "commande_fournisseur_fleur", "fleur_id", "commande_fournisseur_id"); // belongsToMany = many to many
-    }
 }

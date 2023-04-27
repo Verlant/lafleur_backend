@@ -17,6 +17,9 @@ return new class extends Migration
             $table->date("date_livraison");
             $table->enum("etat_paiement", ["A", "W", "B"]);
             $table->enum("etat_livraison", ["A", "W", "B"]);
+            $table->boolean("frais_livraison");
+            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('loterie_id')->references('id')->on('loteries');
         });
     }
 

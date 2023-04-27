@@ -9,25 +9,29 @@ class Client extends Model
 {
     use HasFactory;
     protected $table = "clients";
-    protected $primaryKey = "personne_id";
-    protected $fillable = ["mdp"];
+    protected $primaryKey = "id";
+    protected $fillable = [
+        "nom_personne",
+        "prenom_personne",
+        "email",
+        "mdp",
+        "tel",
+        "date_creation",
+        "date_modif",
+        "adresse_id"
+    ];
     public $timestamps = false;
     protected $hidden = [
         'mdp',
     ];
 
-    public function personne()
+    public function adresse()
     {
-        return $this->belongsTo(Personne::class);
-    }
-
-    public function adresses()
-    {
-        return $this->belongsToMany(Adresse::class); // belongsToMany = many to many
+        return $this->belongsTo(Adresse::class);
     }
 
     public function commandes()
     {
-        return $this->hasMany(CommandeClient::class);
+        return $this->hasMany(Commande::class);
     }
 }

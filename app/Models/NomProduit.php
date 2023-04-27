@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Loterie extends Model
+class NomProduit extends Model
 {
     use HasFactory;
-    protected $table = "loteries";
+    protected $table = "noms_produits";
     protected $primaryKey = "id";
     protected $fillable = [
-        "nom_lot",
-        "quantite_lot",
+        "nom_produit"
     ];
     public $timestamps = false;
 
-    public function commandes()
+    public function produits()
     {
-        return $this->hasMany(Commande::class);
+        return $this->hasMany(Produit::class);
     }
 }

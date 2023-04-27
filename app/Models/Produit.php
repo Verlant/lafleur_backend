@@ -27,9 +27,9 @@ class Produit extends Model
         return $this->belongsTo(Categorie::class);
     }
 
-    public function typeProduit()
+    public function nomProduit()
     {
-        return $this->belongsTo(TypeProduit::class);
+        return $this->belongsTo(NomProduit::class);
     }
 
     public function fleurs()
@@ -37,8 +37,8 @@ class Produit extends Model
         return $this->belongsToMany(Fleur::class)->withPivot('quantite_fleur'); // belongsToMany = many to many
     }
 
-    public function commandeClients()
+    public function commandes()
     {
-        return $this->belongsToMany(CommandeClient::class, "commande_client_produit", "produit_id", "commande_client_id"); // belongsToMany = many to many
+        return $this->belongsToMany(Commande::class)->withPivot('quantite_vente'); // belongsToMany = many to many
     }
 }

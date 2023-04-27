@@ -14,17 +14,25 @@ class Commande extends Model
         "date_commande",
         "date_livraison",
         "etat_paiement",
-        "etat_livraison"
+        "etat_livraison",
+        "frais_livraison",
+        "client_id",
+        "loterie_id"
     ];
     public $timestamps = false;
 
-    public function commandesFournisseurs()
+    public function produits()
     {
-        return $this->hasMany(CommandeFournisseur::class);
+        return $this->belongsToMany(Produit::class)->withPivot('quantite_vente'); // belongsToMany = many to many
     }
 
-    public function commandesClients()
+    public function loterie()
     {
-        return $this->hasMany(CommandeClient::class);
+        return $this->belongsTo(Loterie::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
     }
 }

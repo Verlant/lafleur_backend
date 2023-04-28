@@ -58,6 +58,7 @@ class FleurController extends Controller
             $fleur->quantite_stock = $quantite_stock;
             $fleur->couleur_id = $couleur_fleur;
             $fleur->unite_id = $unite_fleur;
+            $fleur->date_inventaire = now();
             $fleur->save();
             return redirect()->route("fleurs.index");
         } else {
@@ -114,6 +115,7 @@ class FleurController extends Controller
             $fleur->quantite_stock = $quantite_stock;
             $fleur->couleur_id = $couleur_fleur;
             $fleur->unite_id = $unite_fleur;
+            $fleur->date_inventaire = now();
             $fleur->save();
             return redirect()->route("fleurs.index");
         } else {

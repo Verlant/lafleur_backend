@@ -19,7 +19,8 @@
             <h3 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">
                 {{ __('Date du dernier inventaire') }}
                 <br />
-                <span class="text-gray-800 font-normal text-xl text-center">{{ $fleur->date_inventaire }}</span>
+                <span
+                    class="text-gray-800 font-normal text-xl text-center">{{ date('d/m/Y H:i', strtotime($fleur->date_inventaire)) }}</span>
             </h3>
             <h3 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">
                 {{ __('Couleur') }}

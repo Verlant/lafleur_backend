@@ -17,9 +17,8 @@ class AdresseFactory extends Factory
     public function definition(): array
     {
         return [
-            "nom_destinataire" => ucwords($this->faker->words(1, true)),
             "rue" => ucwords($this->faker->words(3, true)),
-            "date_creation" => $this->faker->dateTime(),
+            "date_creation" => now(),
             'ville_id' => $this->faker->numberBetween(1, 10),
             'code_postal_id' => $this->faker->numberBetween(1, 10),
         ];

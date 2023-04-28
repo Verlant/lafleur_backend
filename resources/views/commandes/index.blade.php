@@ -10,11 +10,9 @@
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center sm:table-cell hidden">
                     {{ __('Date commande') }}
                     <br />
-                    (Année-Mois-Jour Heure)
                 </th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Date livraison') }}
                     <br />
-                    (Année-Mois-Jour Heure)
                 </th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Suivi paiement') }}</th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Suivi livraison') }}</th>
@@ -31,10 +29,10 @@
                 @foreach ($commandes as $commande)
                     <tr>
                         <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center sm:table-cell hidden">
-                            {{ $commande->date_commande }}
+                            {{ date('d/m/Y H:i', strtotime($commande->date_commande)) }}
                         </td>
                         <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
-                            {{ $commande->date_livraison }}
+                            {{ date('d/m/Y', strtotime($commande->date_livraison)) }}
                         </td>
                         <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
                             @if ($commande->etat_paiement == 'A')
@@ -69,7 +67,7 @@
                         </td>
                         <td class="sm:p-3 text-sm font-medium max-w-xs">
                             <div class="flex flex-col justify-between">
-                                @if ($commande->etat_paiement == 'A' && $commande->etat_livraison == 'A')
+                                @if (($commande->etat_paiement == 'A' && $commande->etat_livraison == 'A') || $commande->etat_paiement == 'B')
                                 @else
                                     <x-buttons.edit :href="route('commandes.edit', $commande->id)"></x-buttons.edit>
                                 @endif

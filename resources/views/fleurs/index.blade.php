@@ -10,7 +10,7 @@
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Nom') }}</th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Quantite') }}</th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">{{ __('Dernier inventaire') }}
-                    <br /> (Année-Mois-Jour Heure)
+                    <br />
                 </th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 max-w-xs">
                     <div class="flex flex-col justify-between items-center sm:flex-row sm:pl-16">
@@ -26,7 +26,7 @@
                         <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">{{ $fleur->quantite_stock }}
                         </td>
                         <td class="sm:p-2 p-1 text-sm font-medium text-gray-800 text-center">
-                            {{ $fleur->date_inventaire }}
+                            {{ date('d/m/Y H:i', strtotime($fleur->date_inventaire)) }}
                         </td>
                         <td class="sm:p-3 text-sm font-medium max-w-xs">
                             <div class="flex flex-col sm:flex-row sm:justify-between w-max sm:w-auto">

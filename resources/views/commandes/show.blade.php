@@ -12,14 +12,15 @@
                 {{ __('Date de commande') }}
                 <br />
                 <span class="text-gray-800 font-normal text-xl ">
-                    {{ $commande->date_commande }}
+                    {{ date('d/m/Y H:i', strtotime($commande->date_commande)) }}
                 </span>
             </h2>
             <h2
                 class="p-5 text-gray-500 font-bold text-2xl text-center first-letter:capitalize basis-full md:basis-1/2 xl:basis-1/4">
                 {{ __('Date de livraison') }}
                 <br />
-                <span class="text-gray-800 font-normal text-xl ">{{ $commande->date_livraison }}</span>
+                <span
+                    class="text-gray-800 font-normal text-xl ">{{ date('d/m/Y', strtotime($commande->date_livraison)) }}</span>
             </h2>
             <h2
                 class="p-5 text-gray-500 font-bold text-2xl text-center first-letter:capitalize basis-full md:basis-1/2 xl:basis-1/4">
@@ -122,9 +123,11 @@
             </h2>
         </div>
         <div class="flex flex-wrap justify-center sm:justify-end">
-            <x-buttons.edit :href="route('commandes.edit', $commande->id)"></x-buttons.edit>
+            @if ($commande->etat_paiement == 'A' && $commande->etat_livraison == 'A')
+            @else
+                <x-buttons.edit :href="route('commandes.edit', $commande->id)"></x-buttons.edit>
+            @endif
             <x-buttons.back :href="route('commandes.index')"></x-buttons.back>
-            <x-buttons.destroy :action="route('commandes.destroy', $commande->id)"></x-buttons.destroy>
         </div>
     </div>
 </x-app-layout>

@@ -20,13 +20,15 @@
             <h3 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">
                 {{ __('Date création') }}
                 <br />
-                <span class="text-gray-800 font-normal text-xl text-center">{{ $produit->date_creation }}</span>
+                <span
+                    class="text-gray-800 font-normal text-xl text-center">{{ date('d/m/Y H:i', strtotime($produit->date_creation)) }}</span>
             </h3>
             <h3 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">
                 {{ __('Date modification') }}
                 <br />
                 @if (isset($produit->date_modif))
-                    <span class="text-gray-800 font-normal text-xl text-center">{{ $produit->date_modif }}</span>
+                    <span
+                        class="text-gray-800 font-normal text-xl text-center">{{ date('d/m/Y H:i', strtotime($produit->date_modif)) }}</span>
                 @else
                     <span class="text-gray-800 font-normal text-xl text-center">Jamais</span>
                 @endif

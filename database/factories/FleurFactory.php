@@ -18,7 +18,7 @@ class FleurFactory extends Factory
     {
         return [
             "nom_fleur" => ucwords($this->faker->words(1, true)),
-            "date_inventaire" => $this->faker->dateTime(),
+            "date_inventaire" => now(),
             "quantite_stock" => $this->faker->randomNumber(4, false),
             "unite_id" => $this->faker->numberBetween(1, 3),
             "couleur_id" => $this->faker->numberBetween(1, 9),

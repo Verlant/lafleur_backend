@@ -57,6 +57,7 @@ class ProduitController extends Controller
             $produit->prix_vente = $prix_vente;
             $produit->nom_produit = $nom_produit;
             $produit->categorie_id = $categorie_id;
+            $produit->date_creation = now();
             $produit->save();
             $quantite_fleur = $request->input("quantite-fleur-produit");
             foreach ($request->input("fleur-produit") as $fleur_id) {

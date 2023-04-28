@@ -14,12 +14,10 @@
                 <th class="sm:p-2 p-1 lg:table-cell hidden text-sm font-semibold text-gray-600 text-center">
                     {{ __('Ajouté le') }}
                     <br />
-                    (Année-Mois-Jour Heure)
                 </th>
                 <th class="sm:p-2 p-1 lg:table-cell hidden text-sm font-semibold text-gray-600 text-center">
                     {{ __('Modifié le') }}
                     <br />
-                    (Année-Mois-Jour Heure)
                 </th>
                 <th class="sm:p-2 p-1 text-sm font-semibold text-gray-600 text-center">
                     {{ __('Composé des fleurs') }}
@@ -42,11 +40,11 @@
                             {{ ucfirst($produit->categorie->nom_categorie) }}
                         </td>
                         <td class="sm:p-2 p-1 lg:table-cell hidden text-sm font-medium text-gray-800 text-center">
-                            {{ $produit->date_creation }}
+                            {{ date('d/m/Y H:i', strtotime($produit->date_creation)) }}
                         </td>
                         <td class="sm:p-2 p-1 lg:table-cell hidden text-sm font-medium text-gray-800 text-center">
                             @if (isset($produit->date_modif))
-                                {{ $produit->date_modif }}
+                                {{ date('d/m/Y H:i', strtotime($produit->date_modif)) }}
                             @else
                                 Jamais
                             @endif

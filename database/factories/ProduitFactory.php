@@ -19,7 +19,7 @@ class ProduitFactory extends Factory
         return [
             "nom_produit" => ucwords($this->faker->words(1, true)),
             "prix_vente" => $this->faker->randomFloat(2, 1, 99.99),
-            "date_creation" => $this->faker->dateTime(),
+            "date_creation" => now(),
             "categorie_id" => $this->faker->numberBetween(1, 5),
         ];
     }

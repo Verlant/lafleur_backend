@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum("etat_livraison", ["A", "W", "B"]);
             $table->boolean("frais_livraison");
             $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('loterie_id');
+            $table->unsignedBigInteger('loterie_id')->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('loterie_id')->references('id')->on('loteries');
         });

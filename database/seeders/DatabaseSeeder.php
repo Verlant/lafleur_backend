@@ -138,23 +138,23 @@ class DatabaseSeeder extends Seeder
         // Bloc commandes
         Loterie::factory()
             ->create([
-                "nom_lot" => 'stylos "Lafleur"',
+                "nom_lot" => 'stylo "Lafleur"',
                 "quantite_lot" => 1000
             ])
             ->create([
-                "nom_lot" => 'sacs réutilisables en tissus "Lafleur"',
+                "nom_lot" => 'sac réutilisable en tissu "Lafleur"',
                 "quantite_lot" => 700
             ])
             ->create([
-                "nom_lot" => 'portes-clés "Lafleur"',
+                "nom_lot" => 'porte-clé "Lafleur"',
                 "quantite_lot" => 200
             ])
             ->create([
-                "nom_lot" => 'roses rouges à offrir',
+                "nom_lot" => 'rose rouge à offrir',
                 "quantite_lot" => 50
             ])
             ->create([
-                "nom_lot" => 'bouquets de roses',
+                "nom_lot" => 'bouquet de roses',
                 "quantite_lot" => 10
             ]);
         Commande::factory(10)->create();

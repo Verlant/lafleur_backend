@@ -61,13 +61,18 @@
                                     @php($prixTotal += $produit->prix_vente * $produit->pivot->quantite_vente + 2.99)
                                 @endforeach
                             @else
-                                @php($prixTotal += $produit->prix_vente * $produit->pivot->quantite_vente)
+                                @foreach ($commande->produits as $produit)
+                                    @php($prixTotal += $produit->prix_vente * $produit->pivot->quantite_vente)
+                                @endforeach
                             @endif
-                            {{ $prixTotal }}
+                            {{ $prixTotal }} €
                         </td>
                         <td class="sm:p-3 text-sm font-medium max-w-xs">
-                            <div class="flex flex-col sm:flex-row justify-between">
-                                <x-buttons.edit :href="route('commandes.edit', $commande->id)"></x-buttons.edit>
+                            <div class="flex flex-col justify-between">
+                                @if ($commande->etat_paiement == 'A' && $commande->etat_livraison == 'A')
+                                @else
+                                    <x-buttons.edit :href="route('commandes.edit', $commande->id)"></x-buttons.edit>
+                                @endif
                                 <x-buttons.show :href="route('commandes.show', $commande->id)"></x-buttons.show>
                             </div>
                         </td>

@@ -9,24 +9,50 @@
             @method('PUT')
             @csrf
             <div class="flex flex-col">
-                {{-- Input prix de vente --}}
-                {{-- <label for="prix-vente-commande" class="text-gray-800 mb-1 font-bold text-center md:text-left">
-                    {{ __('Prix de vente') }}
-                </label>
-                <input type="text" name="prix-vente-commande" id="prix-vente-commande" value="{{ $commande->prix_vente }}"
-                    class="rounded border-gray-400 mb-1">
-                @error('prix-vente-commande')
-                    <div class="text-red-500">{{ $message }}</div>
-                @enderror --}}
-                {{-- Input nom commande --}}
-                {{-- <label for="nom-commande" class="text-gray-800 mb-1 font-bold text-center md:text-left">
-                    {{ __('Nom du commande') }}
-                </label>
-                <input type="text" name="nom-commande" id="nom-commande" value="{{ $commande->nom_produit }}"
-                    class="rounded border-gray-400 mb-1">
-                @error('nom-commande')
-                    <div class="text-red-500">{{ $message }}</div>
-                @enderror --}}
+                <div class="flex flex-wrap justify-center sm:justify-normal">
+                    <h2 class="p-5 text-gray-500 font-bold text-2xl text-center first-letter:capitalize">
+                        {{ __('Date de livraison') }}
+                        <br />
+                        <span class="text-gray-800 font-normal text-xl ">{{ $commande->date_livraison }}</span>
+                    </h2>
+                    <h2
+                        class="p-5 text-gray-500 font-bold text-2xl text-center first-letter:capitalize basis-full md:basis-1/2 xl:basis-1/4">
+                        {{ __('Adresse') }}
+                        <br />
+                        <span class="text-gray-800 font-normal text-xl ">
+                            {{ ucfirst($commande->client->adresse->rue) }} <br />
+                            {{ ucfirst($commande->client->adresse->ville->nom_ville) }} <br />
+                            {{ $commande->client->adresse->codePostal->cp }}
+                        </span>
+                    </h2>
+                    <h2 class="p-5 text-gray-500 font-bold text-2xl text-center first-letter:capitalize">
+                        {{ __('Etat du paiement') }}
+                        <br />
+                        <span class="text-gray-800 font-normal text-xl flex items-center justify-center">
+                            @if ($commande->etat_paiement == 'A')
+                                <x-buttons.validated></x-buttons.validated>
+                            @elseif ($commande->etat_paiement == 'W')
+                                <x-buttons.pending></x-buttons.pending>
+                            @else
+                                <x-buttons.cancelled></x-buttons.cancelled>
+                            @endif
+                        </span>
+                    </h2>
+                    <h2
+                        class="p-5 text-gray-500 font-bold text-2xl text-center first-letter:capitalize basis-full md:basis-1/2 xl:basis-1/4">
+                        {{ __('Etat de la livraison') }}
+                        <br />
+                        <span class="text-gray-800 font-normal text-xl flex items-center justify-center">
+                            @if ($commande->etat_livraison == 'A')
+                                <x-buttons.validated></x-buttons.validated>
+                            @elseif ($commande->etat_livraison == 'W')
+                                <x-buttons.pending></x-buttons.pending>
+                            @else
+                                <x-buttons.cancelled></x-buttons.cancelled>
+                            @endif
+                        </span>
+                    </h2>
+                </div>
                 <div class="flex flex-col gap-1 items-center mt-4 md:flex-row">
                     {{-- Select etat paiement --}}
                     <label for="etat-livraison" class="text-gray-800 mb-1 font-bold self-center">

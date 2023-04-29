@@ -4,6 +4,12 @@
             {{ __('Tout les produits') }}
         </h1>
     </x-slot>
+    @if (session('message'))
+        <div class="max-w-7xl w-fit mt-4 p-4 mx-4 sm:mx-auto bg-white rounded shadow">
+            {{ session('message') }}
+        </div>
+    @endif
+    <x-stock-alert :fleurs="$fleurs"></x-stock-alert>
     <div class="px-1 sm:pl-8 sm:pt-4 pt-2">
         <table class="mb-4 mx-auto">
             <thead>

@@ -33,7 +33,8 @@ class FleurController extends Controller
         $unites = Unite::all();
         return view('fleurs.create', [
             'couleurs' => $couleurs,
-            'unites' => $unites
+            'unites' => $unites,
+            'fleurs' => Fleur::all()
         ]);
     }
 
@@ -74,7 +75,8 @@ class FleurController extends Controller
         //
         $fleur = Fleur::find($id);
         return view('fleurs.show', [
-            'fleur' => $fleur
+            'fleur' => $fleur,
+            'fleurs' => Fleur::all()
         ]);
     }
 
@@ -90,7 +92,8 @@ class FleurController extends Controller
         return view('fleurs.edit', [
             'fleur' => $fleur,
             'couleurs' => $couleurs,
-            'unites' => $unites
+            'unites' => $unites,
+            'fleurs' => Fleur::all()
         ]);
     }
 
@@ -129,7 +132,20 @@ class FleurController extends Controller
     public function destroy(string $id)
     {
         //
-        Fleur::destroy($id);
-        return redirect()->route("fleurs.index");
+        $fleur = Fleur::find($id);
+        $id_fleurs = [];
+        foreach ($fleur->produits as $produit) {
+            $id_fleurs[] = $produit->pivot->produit_id;
+        }
+        if (in_array($id, $id_fleurs)) {
+            // Stocker un message dans la session
+            session()->flash('message', 'La fleur est rattachée a un produit et ne peut donc pas être supprimée.');
+            return redirect()->route("fleurs.index");
+        } else {
+            Fleur::destroy($id);
+            // Stocker un message dans la session
+            session()->flash('message', 'La fleur a été supprimée avec succès.');
+            return redirect()->route("fleurs.index");
+        }
     }
 }

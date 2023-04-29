@@ -4,6 +4,7 @@
             {{ __('Toutes les commandes') }}
         </h1>
     </x-slot>
+    <x-stock-alert :fleurs="$fleurs"></x-stock-alert>
     <div class="px-1 sm:pl-8 sm:pt-4 pt-2">
         <table class="mb-4 mx-auto">
             <thead>

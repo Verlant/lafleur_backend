@@ -4,6 +4,7 @@
             {{ __('Modifier la fleur') }} {{ $fleur->nom_fleur }}
         </h1>
     </x-slot>
+    <x-stock-alert :fleurs="$fleurs"></x-stock-alert>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
         <form action="{{ route('fleurs.update', $fleur->id) }}" method="POST">
             @method('PUT')

@@ -4,6 +4,7 @@
             {{ __('Détail de la fleur') }} {{ $fleur->nom_fleur }}
         </h1>
     </x-slot>
+    <x-stock-alert :fleurs="$fleurs"></x-stock-alert>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
         <div class="flex flex-wrap justify-center sm:justify-normal">
             <h2 class="p-5 text-gray-500 font-bold text-2xl text-center sm:text-left first-letter:capitalize">

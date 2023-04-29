@@ -22,6 +22,7 @@ class ProduitController extends Controller
         $produits = Produit::orderBy('date_creation', 'DESC')->get();
         return view('produits.index', [
             'produits' => $produits,
+            'fleurs' => Fleur::all()
         ]);
     }
 
@@ -79,7 +80,8 @@ class ProduitController extends Controller
         //
         $produit = Produit::find($id);
         return view('produits.show', [
-            'produit' => $produit
+            'produit' => $produit,
+            'fleurs' => Fleur::all()
         ]);
     }
 
@@ -119,7 +121,7 @@ class ProduitController extends Controller
             $produit->categorie_id = $categorie_id;
             $produit->date_modif = now();
             $produit->save();
-            return redirect()->route("produits.show", $id);
+            return redirect()->route("produits.index", $id);
         } else {
             return redirect()->back();
         }
@@ -132,12 +134,21 @@ class ProduitController extends Controller
     {
         //
         $produit = Produit::find($id);
-        foreach ($produit->fleurs as $fleur) {
-            # code...
-            $produit->fleurs()->detach($fleur->id);
+        // dd($produit->commandes);
+        $id_produits = [];
+        foreach ($produit->commandes as $commande) {
+            $id_produits[] = $commande->pivot->produit_id;
         }
-        Produit::destroy($id);
-        return redirect()->route("produits.index");
+        if (in_array($id, $id_produits)) {
+            // Stocker un message dans la session
+            session()->flash('message', 'Le produit est rattaché a une commande et ne peut donc pas être supprimé.');
+            return redirect()->route("produits.index");
+        } else {
+            Produit::destroy($id);
+            // Stocker un message dans la session
+            session()->flash('message', 'Le produit a été supprimé avec succès.');
+            return redirect()->route("produits.index");
+        }
     }
 
     /**
@@ -171,9 +182,9 @@ class ProduitController extends Controller
             }
             $produit->date_modif = now();
             $produit->save();
-            return redirect()->route("produits.index");
+            return redirect()->back();
         } else {
-            return redirect()->route("produits.edit", $id_produit);
+            return redirect()->back();
         }
     }
 

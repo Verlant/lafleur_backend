@@ -4,6 +4,7 @@
             {{ __('Ajouter un produit') }}
         </h1>
     </x-slot>
+    <x-stock-alert :fleurs="$fleurs"></x-stock-alert>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
         <form action="{{ route('produits.store') }}" method="POST">
             @method('POST')
@@ -62,7 +63,7 @@
                 <div class="mt-4 max-w-fit md:max-w-none flex flex-col justify-end md:flex-row mx-auto md:mx-0">
                     <x-buttons.submit></x-buttons.submit>
                     <x-buttons.reset></x-buttons.reset>
-                    <x-buttons.back :href="route('fleurs.index')"></x-buttons.back>
+                    <x-buttons.back :href="route('produits.index')"></x-buttons.back>
                 </div>
             </div>
         </form>

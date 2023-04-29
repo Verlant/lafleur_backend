@@ -4,7 +4,7 @@
             {{ __('Détail de la commande') }} n°{{ $commande->id }}
         </h1>
     </x-slot>
-    {{-- @dd($commande); --}}
+    <x-stock-alert :fleurs="$fleurs"></x-stock-alert>
     <div class="max-w-7xl w-10/12 mx-auto mt-6 py-6 px-4 sm:px-6 lg:px-8 bg-white rounded shadow">
         <div class="flex flex-wrap justify-center sm:justify-normal">
             <h2

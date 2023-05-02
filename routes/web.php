@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\CommandeClientController;
 use App\Http\Controllers\CommandeController;
-use App\Http\Controllers\CommandeFournisseurController;
 use App\Http\Controllers\FleurController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VilleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,5 +39,6 @@ Route::resource('clients', ClientController::class);
 Route::resource('fleurs', FleurController::class);
 Route::resource('produits', ProduitController::class);
 Route::resource('commandes', CommandeController::class);
+Route::resource('villes', VilleController::class);
 Route::post('produits/{id}/attach', [ProduitController::class, 'attach'])->name('produits.attach');
 Route::get('produits/{id_produit}/detach/{id_fleur}', [ProduitController::class, 'detach'])->name('produits.detach');

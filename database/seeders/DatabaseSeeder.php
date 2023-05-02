@@ -36,10 +36,40 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Bloc clients
-        Ville::factory(10)->create();
-        CodePostal::factory(10)->create();
-        Adresse::factory(10)->create();
-        Client::factory(10)->create();
+        Ville::factory()
+            ->create([
+                "nom_ville" => "Lourmarin",
+                "est_livrable" => 1
+            ])
+            ->create([
+                "nom_ville" => "Puyvert",
+                "est_livrable" => 1
+            ])
+            ->create([
+                "nom_ville" => "Cadenet",
+                "est_livrable" => 1
+            ])
+            ->create([
+                "nom_ville" => "Lauris",
+                "est_livrable" => 1
+            ])
+            ->create([
+                "nom_ville" => "Vaugines",
+                "est_livrable" => 1
+            ])
+            ->create([
+                "nom_ville" => "Curcuron",
+                "est_livrable" => 1
+            ]);
+        CodePostal::factory()
+            ->create([
+                "cp" => 84160
+            ])
+            ->create([
+                "cp" => 84360
+            ]);
+        // Adresse::factory(10)->create();
+        // Client::factory(10)->create();
 
         // Bloc articles
         Unite::factory()
@@ -133,7 +163,7 @@ class DatabaseSeeder extends Seeder
                 "unite_id" => 3,
                 "couleur_id" => 2,
             ]);
-        Produit::factory(10)->create();
+        // Produit::factory(10)->create();
 
         // Bloc commandes
         Loterie::factory()
@@ -157,25 +187,25 @@ class DatabaseSeeder extends Seeder
                 "nom_lot" => 'bouquet de roses',
                 "quantite_lot" => 10
             ]);
-        Commande::factory(10)->create();
+        // Commande::factory(10)->create();
 
         // Tables pivot
-        $commandes = Commande::all();
-        foreach ($commandes as $commande) {
-            $commande->produits()->attach([
-                $faker->numberBetween(1, 10) => [
-                    "quantite_vente" => $faker->randomNumber(2, false)
-                ]
-            ]);
-        }
+        // $commandes = Commande::all();
+        // foreach ($commandes as $commande) {
+        //     $commande->produits()->attach([
+        //         $faker->numberBetween(1, 10) => [
+        //             "quantite_vente" => $faker->randomNumber(2, false)
+        //         ]
+        //     ]);
+        // }
 
-        $produits = Produit::all();
-        foreach ($produits as $produit) {
-            $produit->fleurs()->attach([
-                $faker->numberBetween(1, 5) => [
-                    "quantite_fleur" => $faker->randomNumber(2, false)
-                ]
-            ]);
-        }
+        // $produits = Produit::all();
+        // foreach ($produits as $produit) {
+        //     $produit->fleurs()->attach([
+        //         $faker->numberBetween(1, 5) => [
+        //             "quantite_fleur" => $faker->randomNumber(2, false)
+        //         ]
+        //     ]);
+        // }
     }
 }

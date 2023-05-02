@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('commandes.index')" :active="request()->routeIs('commandes.index')">
                         {{ __('Commandes') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('villes.index')" :active="request()->routeIs('villes.index')">
+                        {{ __('Villes') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -95,6 +98,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('commandes.index')" :active="request()->routeIs('commandes.index')">
                 {{ __('Commandes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('villes.index')" :active="request()->routeIs('villes.index')">
+                {{ __('Villes') }}
             </x-responsive-nav-link>
         </div>
 

@@ -30,10 +30,21 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        \App\Models\User::factory()
+            ->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ])
+            ->create([
+                'name' => 'Guillaume Cholet',
+                'email' => 'guillaume.cholet@lafleur.com',
+                'password' => 'lafleur'
+            ])
+            ->create([
+                'name' => 'Sabine Cholet',
+                'email' => 'sabine.cholet@lafleur.com',
+                'password' => 'lafleur'
+            ]);
 
         // Bloc clients
         Ville::factory()

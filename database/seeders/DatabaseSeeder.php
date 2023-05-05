@@ -120,6 +120,9 @@ class DatabaseSeeder extends Seeder
             ])
             ->create([
                 "nom_couleur" => "gris"
+            ])
+            ->create([
+                "nom_couleur" => "rose"
             ]);
         Categorie::factory()
             ->create([
@@ -173,17 +176,23 @@ class DatabaseSeeder extends Seeder
                 "quantite_stock" => $faker->randomNumber(3, false),
                 "unite_id" => 3,
                 "couleur_id" => 2,
+            ])
+            ->create([
+                "nom_fleur" => "rose",
+                "quantite_stock" => $faker->randomNumber(3, false),
+                "unite_id" => 1,
+                "couleur_id" => 10,
             ]);
         Produit::factory()
             ->create([
-                "nom_produit" => "Bouquet de rose rouge",
+                "nom_produit" => "Bouquet de roses rouge",
                 "prix_vente" => 25.99,
                 "categorie_id" => 4
             ])
             ->create([
-                "nom_produit" => "Bouquet de rose blanche",
+                "nom_produit" => "Bouquet de roses blanche",
                 "prix_vente" => 29.99,
-                "categorie_id" => 2
+                "categorie_id" => 3
             ])
             ->create([
                 "nom_produit" => "Rose rouge",
@@ -224,6 +233,16 @@ class DatabaseSeeder extends Seeder
                 "nom_produit" => "Bouquet d'automne",
                 "prix_vente" => 25.99,
                 "categorie_id" => 1
+            ])
+            ->create([
+                "nom_produit" => "Rose rose",
+                "prix_vente" => 25.99,
+                "categorie_id" => 4
+            ])
+            ->create([
+                "nom_produit" => "Bouquet de roses rose",
+                "prix_vente" => 25.99,
+                "categorie_id" => 5
             ]);
 
         // Bloc commandes
@@ -333,6 +352,18 @@ class DatabaseSeeder extends Seeder
         Produit::find(10)->fleurs()->attach([
             6 => [
                 "quantite_fleur" => 100
+            ]
+        ]);
+        // Association des fleurs au produit : Rose rose
+        Produit::find(11)->fleurs()->attach([
+            7 => [
+                "quantite_fleur" => 1
+            ]
+        ]);
+        // Association des fleurs au produit : Bouquet de roses rose
+        Produit::find(12)->fleurs()->attach([
+            7 => [
+                "quantite_fleur" => 15
             ]
         ]);
 

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
     {
         $faker = new Faker();
 
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()
             ->create([
@@ -174,7 +174,57 @@ class DatabaseSeeder extends Seeder
                 "unite_id" => 3,
                 "couleur_id" => 2,
             ]);
-        // Produit::factory(10)->create();
+        Produit::factory()
+            ->create([
+                "nom_produit" => "Bouquet de rose rouge",
+                "prix_vente" => 25.99,
+                "categorie_id" => 4
+            ])
+            ->create([
+                "nom_produit" => "Bouquet de rose blanche",
+                "prix_vente" => 29.99,
+                "categorie_id" => 2
+            ])
+            ->create([
+                "nom_produit" => "Rose rouge",
+                "prix_vente" => 2.00,
+                "categorie_id" => 4
+            ])
+            ->create([
+                "nom_produit" => "Rose blanche",
+                "prix_vente" => 2.00,
+                "categorie_id" => 3
+            ])
+            ->create([
+                "nom_produit" => "Lys blanc",
+                "prix_vente" => 2.00,
+                "categorie_id" => 1
+            ])
+            ->create([
+                "nom_produit" => "Fleurons d'orchidée",
+                "prix_vente" => 14.99,
+                "categorie_id" => 5
+            ])
+            ->create([
+                "nom_produit" => "Avoine séché",
+                "prix_vente" => 14.90,
+                "categorie_id" => 1
+            ])
+            ->create([
+                "nom_produit" => "Brassée de fleurs",
+                "prix_vente" => 49.99,
+                "categorie_id" => 1
+            ])
+            ->create([
+                "nom_produit" => "Composition florale",
+                "prix_vente" => 29.99,
+                "categorie_id" => 2
+            ])
+            ->create([
+                "nom_produit" => "Bouquet d'automne",
+                "prix_vente" => 25.99,
+                "categorie_id" => 1
+            ]);
 
         // Bloc commandes
         Loterie::factory()
@@ -198,6 +248,104 @@ class DatabaseSeeder extends Seeder
                 "nom_lot" => 'bouquet de roses',
                 "quantite_lot" => 10
             ]);
+
+
+        // Association des fleurs au produit : Bouquet de rose rouge
+        Produit::find(1)->fleurs()->attach([
+            1 => [
+                "quantite_fleur" => 15
+            ]
+        ]);
+        // Association des fleurs au produit : Bouquet de rose blanche
+        Produit::find(2)->fleurs()->attach([
+            2 => [
+                "quantite_fleur" => 15
+            ]
+        ]);
+        // Association des fleurs au produit : Rose rouge
+        Produit::find(3)->fleurs()->attach([
+            1 => [
+                "quantite_fleur" => 1
+            ]
+        ]);
+        // Association des fleurs au produit : Rose blanche
+        Produit::find(4)->fleurs()->attach([
+            2 => [
+                "quantite_fleur" => 1
+            ]
+        ]);
+        // Association des fleurs au produit : Lys blanc
+        Produit::find(5)->fleurs()->attach([
+            3 => [
+                "quantite_fleur" => 1
+            ]
+        ]);
+        // Association des fleurs au produit : Fleurons d'orchidée
+        Produit::find(6)->fleurs()->attach([
+            5 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        // Association des fleurs au produit : Avoine séché
+        Produit::find(7)->fleurs()->attach([
+            6 => [
+                "quantite_fleur" => 100
+            ]
+        ]);
+        // Association des fleurs au produit : Brassée de fleurs
+        Produit::find(8)->fleurs()->attach([
+            1 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        Produit::find(8)->fleurs()->attach([
+            2 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        Produit::find(8)->fleurs()->attach([
+            3 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        Produit::find(8)->fleurs()->attach([
+            5 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        // Association des fleurs au produit : Composition florale
+        Produit::find(9)->fleurs()->attach([
+            3 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        Produit::find(9)->fleurs()->attach([
+            5 => [
+                "quantite_fleur" => 10
+            ]
+        ]);
+        // Association des fleurs au produit : Bouquet d'automne
+        Produit::find(10)->fleurs()->attach([
+            4 => [
+                "quantite_fleur" => 100
+            ]
+        ]);
+        Produit::find(10)->fleurs()->attach([
+            6 => [
+                "quantite_fleur" => 100
+            ]
+        ]);
+
+
+        // $produits = Produit::all();
+        // foreach ($produits as $produit) {
+        //     $produit->fleurs()->attach([
+        //         $faker->numberBetween(1, 5) => [
+        //             "quantite_fleur" => $faker->randomNumber(2, false)
+        //         ]
+        //     ]);
+        // }
+
         // Commande::factory(10)->create();
 
         // Tables pivot
@@ -206,15 +354,6 @@ class DatabaseSeeder extends Seeder
         //     $commande->produits()->attach([
         //         $faker->numberBetween(1, 10) => [
         //             "quantite_vente" => $faker->randomNumber(2, false)
-        //         ]
-        //     ]);
-        // }
-
-        // $produits = Produit::all();
-        // foreach ($produits as $produit) {
-        //     $produit->fleurs()->attach([
-        //         $faker->numberBetween(1, 5) => [
-        //             "quantite_fleur" => $faker->randomNumber(2, false)
         //         ]
         //     ]);
         // }

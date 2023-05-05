@@ -237,7 +237,7 @@ class DatabaseSeeder extends Seeder
             ->create([
                 "nom_produit" => "Rose rose",
                 "prix_vente" => 25.99,
-                "categorie_id" => 4
+                "categorie_id" => 5
             ])
             ->create([
                 "nom_produit" => "Bouquet de roses rose",

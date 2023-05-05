@@ -243,6 +243,11 @@ class DatabaseSeeder extends Seeder
                 "nom_produit" => "Bouquet de roses rose",
                 "prix_vente" => 25.99,
                 "categorie_id" => 5
+            ])
+            ->create([
+                "nom_produit" => "Eucalyptus",
+                "prix_vente" => 4.99,
+                "categorie_id" => 5
             ]);
 
         // Bloc commandes
@@ -364,6 +369,12 @@ class DatabaseSeeder extends Seeder
         Produit::find(12)->fleurs()->attach([
             7 => [
                 "quantite_fleur" => 15
+            ]
+        ]);
+        // Association des fleurs au produit : Eucalyptus
+        Produit::find(13)->fleurs()->attach([
+            4 => [
+                "quantite_fleur" => 100
             ]
         ]);
 

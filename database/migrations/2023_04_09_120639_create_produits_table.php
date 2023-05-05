@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("nom_produit", 190);
             $table->decimal("prix_vente", 10, 2);
-            $table->timestamp("date_creation");
+            $table->timestamp("date_creation")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp("date_modif")->nullable();
             $table->unsignedBigInteger("categorie_id");
             $table->foreign("categorie_id")->references("id")->on("categories");

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->timestamp("date_commande");
+            $table->timestamp("date_commande")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date("date_livraison");
             $table->enum("etat_paiement", ["A", "W", "B"]);
             $table->enum("etat_livraison", ["A", "W", "B"]);

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('email', 190)->unique();
             $table->string('mdp', 80);
             $table->char('tel', 10);
-            $table->timestamp('date_creation');
+            $table->timestamp('date_creation')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('date_modif')->nullable();
             $table->unsignedBigInteger('adresse_id');
             $table->foreign('adresse_id')->references('id')->on('adresses');

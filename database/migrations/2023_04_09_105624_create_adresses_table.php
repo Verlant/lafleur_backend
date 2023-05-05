@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('adresses', function (Blueprint $table) {
             $table->id();
             $table->string('rue', 190);
-            $table->timestamp('date_creation');
-            $table->timestamp('date_modif')->nullable();
             $table->unsignedBigInteger('ville_id');
             $table->foreign('ville_id')->references('id')->on('villes');
             $table->unsignedBigInteger('code_postal_id');

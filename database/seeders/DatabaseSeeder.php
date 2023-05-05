@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
                 "nom_fleur" => "eucalyptus",
                 "quantite_stock" => $faker->randomNumber(3, false),
                 "unite_id" => 3,
-                "couleur_id" => $faker->numberBetween(1, 9),
+                "couleur_id" => 6,
             ])
             ->create([
                 "nom_fleur" => "orchidée",

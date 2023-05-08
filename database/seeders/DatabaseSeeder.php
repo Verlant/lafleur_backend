@@ -143,43 +143,43 @@ class DatabaseSeeder extends Seeder
         Fleur::factory()
             ->create([
                 "nom_fleur" => "rose",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 500,
                 "unite_id" => 1,
                 "couleur_id" => 3,
             ])
             ->create([
                 "nom_fleur" => "rose",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 500,
                 "unite_id" => 1,
                 "couleur_id" => 7,
             ])
             ->create([
                 "nom_fleur" => "lys",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 500,
                 "unite_id" => 1,
                 "couleur_id" => 7,
             ])
             ->create([
                 "nom_fleur" => "eucalyptus",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 10000,
                 "unite_id" => 3,
                 "couleur_id" => 6,
             ])
             ->create([
                 "nom_fleur" => "orchidée",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 500,
                 "unite_id" => 2,
                 "couleur_id" => 4,
             ])
             ->create([
                 "nom_fleur" => "avoine séchée",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 10000,
                 "unite_id" => 3,
                 "couleur_id" => 2,
             ])
             ->create([
                 "nom_fleur" => "rose",
-                "quantite_stock" => $faker->randomNumber(3, false),
+                "quantite_stock" => 500,
                 "unite_id" => 1,
                 "couleur_id" => 10,
             ]);
@@ -236,7 +236,7 @@ class DatabaseSeeder extends Seeder
             ])
             ->create([
                 "nom_produit" => "Rose rose",
-                "prix_vente" => 25.99,
+                "prix_vente" => 2.00,
                 "categorie_id" => 5
             ])
             ->create([
